@@ -1,0 +1,15 @@
+ h1{
+      text-align: center;
+      font-size:50px;
+      color:red;
+      background-color: #000000;
+      padding-left: 400px;
+      border: 4px dashed green;    
+    }
+
+body{
+  background-color: brown;
+}
+h6{
+  margin-left:550px
+}
