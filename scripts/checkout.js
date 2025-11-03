@@ -117,6 +117,7 @@ document.querySelectorAll('.js-update-link').forEach((link) => {
     // Hide quantity text + update link
     const newQuantity = Number(input.value);
    input.style.display = 'none';
+   quantityLabel.style.display = 'none'
     container.querySelector('.js-update-link').style.display = 'none';
 
     // Show input + save link
@@ -138,12 +139,15 @@ document.querySelectorAll('.js-save-link').forEach((link) => {
     container.classList.remove("is-editing-quantity");
 
     const newQuantity = Number(input.value);
-    quantityLabel.innerText = newQuantity;
 
     const cartItem = cart.find(item => item.productId === productId);
-    if (cartItem) {
-      cartItem.quantity = newQuantity;
-    }
+    if (isNaN(newQuantity) || newQuantity < 1 || newQuantity > 999) {
+  alert("Please enter a valid quantity between 1 and 999.");
+  input.value = cartItem.quantity; // Reset to previous value
+  return;
+}
+    cartItem.quantity = newQuantity
+    quantityLabel.innerText = newQuantity;
     saveToStorage()
     updateCartQuantity()
     // Show quantity label + update link again
@@ -156,6 +160,13 @@ document.querySelectorAll('.js-save-link').forEach((link) => {
   });
 });
 
-  
+ document.querySelectorAll('.js-quantity-input').forEach((input) => {
+  input.addEventListener('keydown', (event) => {
+    if (event.key === "Enter") {
+      input.closest(".cart-item-container").querySelector(".js-save-link").click();
+    }
+  });
+});
+ 
 
 //
