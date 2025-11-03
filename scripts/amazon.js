@@ -1,6 +1,13 @@
-import { cart,saveToStorage,calculateCartQuantity } from "../data/cart.js";
+import { cart,saveToStorage,calculateCartQuantity,loadCartFromStorage} from "../data/cart.js";
 import { products } from "../data/products.js"
 import { formatCurrency } from "./utils/money.js";
+
+loadCartFromStorage();
+const cartQuantityElem = document.querySelector('.js-cart-quantity');
+if (cartQuantityElem) {
+  const initialCount = calculateCartQuantity();
+  cartQuantityElem.innerHTML = initialCount === 0 ? '' : initialCount;
+}
 let productsHtml = '';
 
 
@@ -81,13 +88,11 @@ document .querySelectorAll('.js-add-to-cart').forEach((button) => {
       
     }
     saveToStorage();
+    const newCount = calculateCartQuantity();
+cartQuantityElem.innerHTML = newCount === 0 ? '' : newCount;
 
-const cartQuantity = calculateCartQuantity(); // ✅ get returned value
-document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
+
   
-
-
-    document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
     const productContainer = button.closest('.product-container')
     const added = productContainer.querySelector('.js-add-message')
 
