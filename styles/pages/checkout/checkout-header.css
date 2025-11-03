@@ -66,6 +66,10 @@
   display: flex;
   justify-content: center;
 }
+.cart-quantity-updated {
+  color: rgb(0, 113, 133);
+  font-size: 90px;
+}
 
 .return-to-home-link {
   color: rgb(0, 113, 133);
