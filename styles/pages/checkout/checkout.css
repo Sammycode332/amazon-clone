@@ -138,6 +138,14 @@
   font-weight: 700;
   margin-bottom: 10px;
 }
+.quantity-input{
+  width:30px;
+  display:none;
+}
+.save-quantity-link{
+  color: rgb(0, 113, 133);
+  display: none;
+}
 
 .delivery-option {
   display: grid;
