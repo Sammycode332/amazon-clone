@@ -1,7 +1,12 @@
 import { cart, removeFromCart,calculateCartQuantity,loadCartFromStorage, saveToStorage } from "../data/cart.js";
 import { products } from "../data/products.js";
 import { formatCurrency } from "./utils/money.js";  
+import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 
+const today  = dayjs()
+const deliveryDate = today.add(7,'days')
+console.log(deliveryDate.format('dddd, MMMM D'))
+ 
 loadCartFromStorage();
 let cartSummaryHtml = "";
 cart.forEach((cartItem)=>{
@@ -9,7 +14,7 @@ cart.forEach((cartItem)=>{
   const productId = cartItem.productId;
   let matchingProduct;
 
-  products.forEach((product)=>{
+  products.forEach((product)=>{ 
     if(product.id === productId){
       matchingProduct = product;
     }
