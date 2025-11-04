@@ -83,7 +83,8 @@ document .querySelectorAll('.js-add-to-cart').forEach((button) => {
       matchingItem.quantity += quantitySelected;
     } else {
       cart.push({
-        productId,quantity: quantitySelected
+        productId,quantity: quantitySelected,
+        deliveryOptionId: '1'
       });
       
     }
@@ -111,3 +112,4 @@ cartQuantityElem.innerHTML = newCount === 0 ? '' : newCount;
     console.log(`Cart updated:`, cart);
   });
 });
+  

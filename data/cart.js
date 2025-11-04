@@ -1,5 +1,8 @@
-export let cart = JSON.parse(localStorage.getItem('cart')) ||[
-];
+export let cart = JSON.parse(localStorage.getItem('cart')) ||[{
+  deliveryOptionId:'1',
+},{
+  deliveryOptionId:'2'
+}];
 export function loadCartFromStorage() {
   // re-read storage and update exported binding
   cart = JSON.parse(localStorage.getItem('cart')) || [];
