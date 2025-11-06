@@ -1,8 +1,12 @@
+import { products } from './products.js';
 export let cart = JSON.parse(localStorage.getItem('cart')) ||[{
   deliveryOptionId:'1',
 },{
   deliveryOptionId:'2'
-}];
+},{
+  deliveryOptionId:'3'
+}
+];
 export function loadCartFromStorage() {
   // re-read storage and update exported binding
   cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -31,3 +35,14 @@ export function removeFromCart(productId){
 
   saveToStorage();
 }
+ export function updateDeliveryOption(productId, deliveryOptionId){
+    let matchingItem; 
+    cart.forEach((item) => {
+      if (productId === item.productId) {
+        matchingItem = item;
+      }
+    });
+    matchingItem.deliveryOptionId  = deliveryOptionId;
+
+    saveToStorage();
+ }
