@@ -21,6 +21,10 @@ export function calculateCartQuantity(){
     });
     return cartQuantity;
  }  
+  export function updateCartQuantity(){
+      const cartQuantity = calculateCartQuantity();
+      document.querySelector(".js-carts-quantity").innerHTML = `Checkout(${cartQuantity} items)`;
+    }
 export function saveToStorage(){
   localStorage.setItem('cart',JSON.stringify(cart))
 }
@@ -45,4 +49,4 @@ export function removeFromCart(productId){
     matchingItem.deliveryOptionId  = deliveryOptionId;
 
     saveToStorage();
- }
+ } 

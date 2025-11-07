@@ -1,8 +1,8 @@
 import { cart, removeFromCart,calculateCartQuantity,loadCartFromStorage, saveToStorage, updateDeliveryOption } from "../../data/cart.js";
-import { products } from "../../data/products.js";
+import { products, getProduct } from "../../data/products.js";
 import { formatCurrency } from "../utils/money.js";  
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
-import { deliveryOptions } from '../../data/deliveryOptions.js'
+import { deliveryOptions, getDeliveryOption} from '../../data/deliveryOptions.js'
 const today  = dayjs()
 const deliveryDate = today.add(7,'days')
 console.log(deliveryDate.format('ddd d, MMMM D'))
@@ -15,13 +15,7 @@ export function renderOrderSummary (){
     cart.forEach((cartItem)=>{
 
       const productId = cartItem.productId;
-      let matchingProduct;
-
-      products.forEach((product)=>{ 
-        if(product.id === productId){
-          matchingProduct = product;
-        }
-      });
+      const matchingProduct = getProduct(productId)
 
       // const deliveryOptionId = cartItem.deliveryOptionId;
       // let deliveryOption;
@@ -37,9 +31,7 @@ export function renderOrderSummary (){
     const deliveryOptionId = cartItem.deliveryOptionId; // default to 1 if not set
 
     // Find the delivery option that matches
-    const deliveryOption = deliveryOptions.find(
-      (option) => option.id === deliveryOptionId
-    );
+    const deliveryOption = getDeliveryOption(deliveryOptionId);
 
     // Fallback if nothing found
     const today = dayjs();
@@ -92,7 +84,7 @@ export function renderOrderSummary (){
               </div>`
     });
     //console.log(cartSummaryHtml)
-    function updateCartQuantity(){
+     function updateCartQuantity(){
       const cartQuantity = calculateCartQuantity();
       document.querySelector(".js-carts-quantity").innerHTML = `Checkout(${cartQuantity} items)`;
     }
@@ -163,6 +155,16 @@ export function renderOrderSummary (){
         }
       });
     });
+    document.querySelectorAll(".js-delete-link").forEach((link)=>{
+      link.addEventListener('click', ()=>{
+       const { productId }= link.dataset
+       removeFromCart(productId)
+        const container =  document.querySelector(`.js-cart-item-container-${productId}`)
+        container.remove()
+        updateCartQuantity()
+      })
+      updateCartQuantity();
+    })
       
     function deliveryOptionsHTML(matchingProduct, cartItem){
       let html = '';
