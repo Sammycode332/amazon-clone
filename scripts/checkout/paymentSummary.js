@@ -15,7 +15,7 @@ export function renderPaymentSummary(){
      const totalBeforeTaxCents = productPriceCents + shippingPriceCents;
      const taxCents = totalBeforeTaxCents * 0.1;
      const totalCents = totalBeforeTaxCents + taxCents
-updateCartQuantity()
+
      const cartquantity = calculateCartQuantity()
      const paymentSummaryHTML = `
          <div class="payment-summary-title">
@@ -58,5 +58,4 @@ updateCartQuantity()
      `;
 
      document.querySelector('.js-payment-summary').innerHTML = paymentSummaryHTML;
-     updateCartQuantity();
 }  
