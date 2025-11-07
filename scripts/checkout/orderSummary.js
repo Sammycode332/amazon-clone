@@ -6,6 +6,22 @@ import { deliveryOptions, getDeliveryOption} from '../../data/deliveryOptions.js
 import { renderPaymentSummary } from "./paymentSummary.js";
  
 loadCartFromStorage();
+console.log(dayjs())
+const today = dayjs()
+//const date = today.subtract(1,'month')
+//const date = today.subtract(1,'month')
+const date = today.add(1,'days')
+const newDate =  date.format('dddd,MMMM D')
+console.log(newDate)
+
+function isWeekend(date){
+  if (date.day === "Saturday"){
+    return true;
+  } else{
+    return false
+  }
+}
+console.log(isWeekend(newDate))
 export function renderOrderSummary (){
 
 
