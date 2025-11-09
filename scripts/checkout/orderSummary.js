@@ -15,13 +15,24 @@ const newDate =  date.format('dddd,MMMM D')
 console.log(newDate)
 
 function isWeekend(date){
-  if (date.day === "Saturday"){
-    return true;
-  } else{
-    return false
-  }
+  const day = date.day();
+  return day === 0 || day === 6;
 }
-console.log(isWeekend(newDate))
+console.log(isWeekend(dayjs('2025-11-08')))
+console.log(isWeekend(dayjs('2025-11-10')))
+function calculateDeliveryDate(deliveryDays) {
+  let date = dayjs();
+  let remainingDays = deliveryDays;
+
+  while (remainingDays > 0) {
+    date = date.add(1, 'day');
+    if (!isWeekend(date)) {
+      remainingDays--;
+    }
+  }
+
+  return date;
+}
 export function renderOrderSummary (){
 
 
@@ -50,8 +61,8 @@ export function renderOrderSummary (){
     // Fallback if nothing found
     const today = dayjs();
     const deliveryDate = deliveryOption
-      ? today.add(deliveryOption.deliveryDays, 'days')
-      : today.add(7, 'days'); // fallback default
+      ? calculateDeliveryDate(deliveryOption.deliveryDays, 'days')
+      : calculateDeliveryDate(7); // fallback default
     const dateString = deliveryDate.format('dddd, MMMM D');
       console.log(matchingProduct);
 
@@ -190,7 +201,7 @@ export function renderOrderSummary (){
       deliveryOptions.forEach((option)=>{
         
         const today = dayjs();
-        const deliveryDate = today.add(option.deliveryDays,'days')
+        const deliveryDate = calculateDeliveryDate(option.deliveryDays,'days')
         const dateString = deliveryDate.format('dddd, MMMM D')
         
         const priceString = option.priceCents === 0 ? 'FREE':`$${formatCurrency(option.priceCents)} -`
