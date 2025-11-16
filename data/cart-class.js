@@ -2,8 +2,10 @@ import { products } from './products.js';
 // when creating function that re object use pascal case
 
 class Cart {
-    localStorageKey ;
-    cartItems = JSON.parse(localStorage.getItem(this.localStorageKey)) ||[{
+  // # makes the key private in a class so it cant be tampered outside the class
+  //it will make it a private property
+    #localStorageKey ;
+    cartItems = JSON.parse(localStorage.getItem(this.#localStorageKey)) ||[{
   deliveryOptionId:'1',
 },{
   deliveryOptionId:'2'
@@ -11,15 +13,15 @@ class Cart {
   deliveryOptionId:'3'
 }];
 constructor(localStorageKey) {
-  this.localStorageKey =  localStorageKey;
+  this.#localStorageKey =  localStorageKey;
 }
- loadCartFromStorage() {
+ #loadCartFromStorage() {
   // re-read storage and update exported binding
-  this.cartItems = JSON.parse(localStorage.getItem(this.localStorageKey)) || [];
+  this.cartItems = JSON.parse(localStorage.getItem(this.#localStorageKey)) || [];
   return this.cartItems;
 };
 saveToStorage(){
-  localStorage.setItem(this.localStorageKey,JSON.stringify(this.cartItems))
+  localStorage.setItem(this.#localStorageKey,JSON.stringify(this.cartItems))
 };
  calculateCartQuantity(){
   let cartQuantity = 0;
