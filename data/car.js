@@ -1,12 +1,12 @@
 class Car { 
-    brand;
-    model;
+    #brand;
+    #model;
     speed = 0;
     isTrunkOpen = false;
 
     constructor(carDetails) {
-        this.brand = carDetails.brand;
-        this.model = carDetails.model;
+        this.#brand = carDetails.brand;
+        this.#model = carDetails.model;
     }
     openTrunk() {
          if(this.speed >0){
@@ -32,7 +32,7 @@ class Car {
     }
 
     displayInfo() {
-        console.log(`${this.brand} ${this.model}, Speed: ${this.speed} km/h Trunk open: ${this.isTrunkOpen}`);
+        console.log(`${this.#brand} ${this.#model}, Speed: ${this.speed} km/h Trunk open: ${this.isTrunkOpen}`);
     }  
    
 }
@@ -42,7 +42,7 @@ export const carProducts = [
         brand: 'Toyota',
         model: 'Corolla'
     },
-    {
+    { 
         brand: 'Tesla',
         model: 'Model 3'
     },
