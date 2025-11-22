@@ -100,9 +100,18 @@ class Product {
   method: ()=>{
     console.log(this)
   }
+    
  }
  object3.method()
  */
+export let products = []
+
+function loadProducts(){
+  const xhr = new  XMLHttpRequest;
+  xhr.open('GET', "https://supersimple.dev/products")
+  xhr.send()
+}
+/* 
 export const products = [
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
@@ -818,4 +827,4 @@ export const products = [
   }
    return new Product(productDetails)
 });
-console.log(products) 
+console.log(products) */
