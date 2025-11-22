@@ -6,4 +6,5 @@ import '../data/backend-practice.js';
 
 renderOrderSummary();
 
+
 renderPaymentSummary()

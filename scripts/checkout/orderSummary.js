@@ -154,6 +154,7 @@ export function renderOrderSummary (){
 
         const newQuantity = Number(input.value);
 
+        
         const cartItem = cart.find(item => item.productId === productId);
         if (isNaN(newQuantity) || newQuantity < 1 || newQuantity > 999) {
       alert("Please enter a valid quantity between 1 and 999.");
