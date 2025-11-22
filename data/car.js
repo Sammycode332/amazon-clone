@@ -48,6 +48,7 @@ export const carProducts = [
     },
 ].map(carDetails => new Car(carDetails));
 
+
 carProducts.forEach(car => {
     car.go();
     car.go();
