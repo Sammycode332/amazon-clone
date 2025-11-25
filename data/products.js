@@ -106,7 +106,8 @@ class Product {
  */
 export let products = []
 
-export function loadProducts(){
+export function loadProducts(fun){
+  //callbacks re fuctions which willl run un the future
   const xhr = new  XMLHttpRequest;
 
   xhr.addEventListener('load', () =>{
@@ -120,7 +121,8 @@ export function loadProducts(){
   }
    return new Product(productDetails)
 });
-})
+fun();
+});
 
   xhr.open('GET', "https://supersimplebackend.dev/products")
   xhr.send()
