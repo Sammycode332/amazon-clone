@@ -50,3 +50,14 @@ export function removeFromCart(productId){
 
     saveToStorage();
  } 
+ export function loadCart(fun){
+   //callbacks re fuctions which willl run un the future
+   const xhr = new  XMLHttpRequest;
+   console.log(xhr.response)
+ 
+  
+ fun();
+ 
+   xhr.open('GET', "https://supersimplebackend.dev/cart")
+   xhr.send()
+ }
