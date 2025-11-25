@@ -104,7 +104,32 @@ class Product {
  }
  object3.method()
  */
-export let products = []
+export let products = [];
+export function loadProductsFetch(){
+  const promise = fetch( "https://supersimplebackend.dev/products").then((response)=>{
+    return response.json()
+    //the above code is to get the json or data attached to the response
+    console.log(response)
+  }).then((productsData)=>{
+    products =productsData.map((productDetails)=>{
+ 
+  if(productDetails.type === 'clothing'){
+    return new Clothing(productDetails)
+  }
+  if(productDetails.type === 'appliance'){
+    return new Appliance(productDetails)
+  }
+   return new Product(productDetails)
+});
+    console.log('loadProducts')
+});
+ return promise;
+}
+/*
+loadProductsFetch().then(()=>{
+  console.log("next-step")
+})
+  */ 
 
 export function loadProducts(fun){
   //callbacks re fuctions which willl run un the future
