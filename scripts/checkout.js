@@ -10,7 +10,23 @@ import { loadProducts,loadProductsFetch} from "../data/products.js";
       //resolve controls when we want to go the the next step
     //});
     //whatever value you give to result wil be saved in that parameter,
-Promise.all([
+    async function loadPage() {
+
+      await loadProductsFetch()
+
+      await new Promise((resolve)=>{
+      loadCart(()=>{
+        resolve(); 
+      });
+    });
+    //you can put a resolve value in the await variable nd get it returned later     
+     renderOrderSummary();
+     renderPaymentSummary();
+    }
+    // you can use await when we re inside an async function
+    loadPage();
+    /*
+    Promise.all([
    loadProductsFetch(),
    new Promise((resolve)=>{
       loadCart(()=>{
@@ -21,6 +37,7 @@ Promise.all([
     renderOrderSummary();
     renderPaymentSummary()
 });
+*/
 /*
 new Promise((resolve)=>{
    
