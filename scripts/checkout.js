@@ -20,7 +20,7 @@ import { loadProducts,loadProductsFetch} from "../data/products.js";
       //reject is a function that lets us create an error in the future
       loadCart(()=>{  
         //reject('error3')
-        resolve(); 
+        resolve(''); 
       });
     });
 
