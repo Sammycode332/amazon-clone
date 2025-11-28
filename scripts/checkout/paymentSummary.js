@@ -80,6 +80,7 @@ export function renderPaymentSummary(){
     }
       
     window.location.href = 'orders.html' 
+    //below code gets the location of a browser
      });
 
     
