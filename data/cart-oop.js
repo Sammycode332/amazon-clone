@@ -2,6 +2,7 @@ import { products } from './products.js';
 // when creating function that re object use pascal case
 
 
+
 function Cart(localStorageKey){
     const cart = {
   cartItems : JSON.parse(localStorage.getItem(localStorageKey)) ||[{
