@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>type shiii</h1>
+   <script>
+    const xhr = new XMLHttpRequest
+    ();
+
+    xhr.addEventListener('load',()=>{
+        console.log('Response from backend:', xhr.response)
+    });
+    xhr.open('GET','https://supersimplebackend.dev/greeting')   
+    xhr.response
+   </script>    
+</body>
+</html>
