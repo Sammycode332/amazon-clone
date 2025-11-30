@@ -2,6 +2,7 @@ import { products } from './products.js';
 // when creating function that re object use pascal case
 
 
+
 class Cart {
   // # makes the key private in a class so it cant be tampered outside the class
   //it will make it a private property
