@@ -7,6 +7,7 @@ export let cart = JSON.parse(localStorage.getItem('cart')) ||[{
   deliveryOptionId:'3'
 }
 ];
+
 export function loadCartFromStorage() {
   // re-read storage and update exported binding
   cart = JSON.parse(localStorage.getItem('cart')) || [];
