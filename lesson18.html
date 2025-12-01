@@ -8,14 +8,27 @@
 <body>
     <h1>type shiii</h1>
    <script>
-    const xhr = new XMLHttpRequest
-    ();
+    // const xhr = fetch('https://supersimplebackend.dev/greeting').then((response)=>{
+    //     return response.text();
+    // }).then((data) => {
+    //     console.log('Response from backend:',data);
+    // })
+    
+    async function fetchGreeting(){
+       const response = await fetch('https://supersimplebackend.dev/greeting')
+       const data = await response.text();
+       console.log('Response from backend:',data)
+    }
+        fetchGreeting();
+    //const xhr = new XMLHttpRequest
+   // ();
 
-    xhr.addEventListener('load',()=>{
-        console.log('Response from backend:', xhr.response)
-    });
-    xhr.open('GET','https://supersimplebackend.dev/greeting')   
-    xhr.response
+    // xhr.addEventListener('load',()=>{
+    //     console.log('Response from backend:', xhr.response)
+    // });
+    // xhr.open('GET','https://supersimplebackend.dev/greeting');
+    // xhr.send();  
+    // xhr.response
    </script>    
 </body>
 </html>

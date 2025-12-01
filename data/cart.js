@@ -10,7 +10,7 @@ export let cart = JSON.parse(localStorage.getItem('cart')) ||[{
 
 export function loadCartFromStorage() {
   // re-read storage and update exported binding
-  cart = JSON.parse(localStorage.getItem('cart')) || [];
+  cart = JSON.parse(localjStorage.getItem('cart')) || [];
   return cart;
 }
 export function calculateCartQuantity(){
