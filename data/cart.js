@@ -10,7 +10,7 @@ export let cart = JSON.parse(localStorage.getItem('cart')) ||[{
 
 export function loadCartFromStorage() {
   // re-read storage and update exported binding
-  cart = JSON.parse(localjStorage.getItem('cart')) || [];
+  cart = JSON.parse(localStorage.getItem('cart')) || [];
   return cart;
 }
 export function calculateCartQuantity(){
@@ -51,14 +51,24 @@ export function removeFromCart(productId){
 
     saveToStorage();
  } 
- export function loadCart(fun){
-   //callbacks re fuctions which willl run un the future
-   const xhr = new  XMLHttpRequest;
-   console.log(xhr.response)
- 
-  
- fun();
- 
-   xhr.open('GET', "https://supersimplebackend.dev/cart")
-   xhr.send()
+ export function loadCart(callback) {
+  const xhr = new XMLHttpRequest();
+
+  xhr.addEventListener('load', () => {
+    console.log(xhr.response);
+    callback();
+  });
+
+  xhr.open('GET', 'https://supersimplebackend.dev/cart');
+  xhr.send();
+}
+ export async function loadCartFetch(){
+  const response = await fetch('https://supersimplebackend.dev/cart')
+   if (!response.ok) {
+    throw new Error('Failed to load cart');
+  }
+  const Data = await response.json()
+  console.log(Data);
+
+  return Data;
  }
