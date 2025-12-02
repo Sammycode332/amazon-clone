@@ -19,7 +19,45 @@
        const data = await response.text();
        console.log('Response from backend:',data)
     }
-        fetchGreeting();
+    fetchGreeting();
+    async function postResponse(){
+
+
+        const response = await fetch('https://supersimplebackend.dev/greeting',{
+            method: 'POST',
+            headers:{
+                'Content-type':'application/json'
+            },
+            body: JSON.stringify({name:'Samuel'})
+
+        })
+        const reply = await response.text();
+        console.log('POST response:', reply)
+    }
+    postResponse();
+    async function postResponse2(){
+     try{
+
+      const response = await fetch('https://supersimplebackend.dev/greeting',{
+            method: 'POST',
+            headers:{
+                'Content-type':'application/json'
+            },
+        })
+        
+            if(response.status >=400){
+            throw response;           
+        }
+        }catch(error){
+            if(error.status === 400){
+                const reply = await error.json()
+            }
+            else{
+                console.log('Network error. Please try again later')
+            }
+        }
+    }
+    postResponse2();
     //const xhr = new XMLHttpRequest
    // ();
 
@@ -29,6 +67,32 @@
     // xhr.open('GET','https://supersimplebackend.dev/greeting');
     // xhr.send();  
     // xhr.response
+
+    const xhr = new XMLHttpRequest();
+    xhr.addEventListener('load',()=>{
+        console.log(xhr.response)
+    })
+
+    xhr.open('GET','https://amazon.com');
+    xhr.send();
+        
+    const promise = fetch('https://amazon.com').then((response)=>{
+        return response.text();
+    }).then((data)=>{
+        console.log('Response from backend:', data)
+    });
+
+    async function getResult(){
+        try{
+            const resp = await fetch('https://amazon.com')
+        const rep = await resp.text();
+        console.log('Response from backend:', rep)
+        }
+        catch(error){
+            console.log('Error occured:',error)
+        }
+    }
+    getResult();
    </script>    
 </body>
 </html>
