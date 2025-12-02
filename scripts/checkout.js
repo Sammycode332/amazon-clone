@@ -1,6 +1,6 @@
 import { renderOrderSummary } from "./checkout/orderSummary.js";
 import { renderPaymentSummary } from "./checkout/paymentSummary.js";
-import { updateCartQuantity,loadCart } from "../data/cart.js";
+import { updateCartQuantity,loadCart,loadCartFetch } from "../data/cart.js";
 import { loadProducts,loadProductsFetch} from "../data/products.js";
 //import '../data/car.js';
 //import '../data/backend-practice.js';
@@ -15,14 +15,15 @@ import { loadProducts,loadProductsFetch} from "../data/products.js";
         //throw 'error1'
         await loadProductsFetch()
 
-      const value = await new Promise((resolve, reject)=>{
-      //throw 'error 2'
-      //reject is a function that lets us create an error in the future
-      loadCart(()=>{  
-        //reject('error3')
-        resolve(''); 
-      });
-    });
+     const value = await new Promise((resolve, reject)=>{
+
+  loadCartFetch().then(() => {
+    resolve('');
+  }).catch(() => {
+    reject('error loading cart');
+  });
+
+});
 
     } catch(error){
         console.log('Unexpected error. Please try again later.')
@@ -79,4 +80,21 @@ loadProducts(()=>{
 ;
 });
 */
+/* import { renderOrderSummary } from "./checkout/orderSummary.js";
+import { renderPaymentSummary } from "./checkout/paymentSummary.js";
+import { loadCartFetch } from "../data/cart.js";
+import { loadProductsFetch } from "../data/products.js";
+
+async function loadPage() {
+  try {
+    await loadProductsFetch(); // wait for products to load
+    await loadCartFetch();     // wait for cart to load
+    renderOrderSummary();      // render UI
+    renderPaymentSummary();
+  } catch (error) {
+    console.log('Unexpected error. Please try again later.', error);
+  }
+}
+
+loadPage(); */
 
