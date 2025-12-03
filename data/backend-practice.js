@@ -1,6 +1,7 @@
 const xhr = new XMLHttpRequest();
 
 
+
 xhr.addEventListener('load', ()=>{
     console.log('Response from backend:', xhr.response)
 });
