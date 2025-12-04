@@ -4,6 +4,7 @@ export function addOrder(order){
     orders.unshift(order)
     //unshift adds to the beginning of the array
     saveToOrdersStorage();
+    return order;
 }
 
 
