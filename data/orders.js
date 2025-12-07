@@ -11,3 +11,6 @@ export function addOrder(order){
 function saveToOrdersStorage(){
     localStorage.setItem('orders',JSON.stringify(orders))
 }
+export function loadOrders() {
+  const orders = JSON.parse(localStorage.getItem("orders")) || [];
+}
