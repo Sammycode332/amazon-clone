@@ -12,7 +12,7 @@ export function getProduct(productId){
 
 
 class Product {
-  id;
+  id;d
   image;
   name;
   rating;
