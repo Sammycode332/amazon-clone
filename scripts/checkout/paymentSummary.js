@@ -3,6 +3,8 @@ import { getProduct } from "../../data/products.js";
 import { getDeliveryOption } from "../../data/deliveryOptions.js";
 import { formatCurrency } from "../utils/money.js"
 import { addOrder, orders } from "../../data/orders.js";
+export let lastOrderTotalCents = 0;
+
 export function renderPaymentSummary(){
     let productPriceCents = 0;
     let shippingPriceCents =0;  
@@ -16,6 +18,7 @@ export function renderPaymentSummary(){
      const totalBeforeTaxCents = productPriceCents + shippingPriceCents;
      const taxCents = totalBeforeTaxCents * 0.1;
      const totalCents = totalBeforeTaxCents + taxCents
+     lastOrderTotalCents = totalCents
 
      const cartquantity = calculateCartQuantity()
      const paymentSummaryHTML = `
@@ -69,7 +72,8 @@ export function renderPaymentSummary(){
                    'Content-Type':'application/json'
                  },
                  body:JSON.stringify({
-                   cart: cart
+                   cart: cart,
+                   totalCostCents:lastOrderTotalCents
                  })
                });
             

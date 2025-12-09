@@ -4,7 +4,7 @@ import { formatCurrency } from "../utils/money.js";
 import { getProduct } from '../data/products.js';
 import { cart,updateCartQuantity,calculateCartQuantity,} from '../data/cart.js';
 loadOrders(); 
-renderOrders();
+//renderOrders();
 const today = dayjs();
 const todayFormatted = today.format('MMMM,D');
 console.log(todayFormatted);
@@ -22,9 +22,9 @@ function renderOrders(){
             </div>
             <div class="order-total">
               <div class="order-header-label">Total:</div>
-              <div>$${formatCurrency(order.totalCostCents)}</div>
+              <div>$${formatCurrency(orders.totalCostCents)}</
             </div>
-          </div>
+          </div> 
 
           <div class="order-header-right-section">
             <div class="order-header-label">Order ID:</div>
